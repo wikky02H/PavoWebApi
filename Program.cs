@@ -1,7 +1,4 @@
 
-using PavoWeb.Database;
-using PavoWeb.Repository;
-
 namespace PavoWeb
 {
     public class Program
@@ -17,18 +14,12 @@ namespace PavoWeb
                         .AllowAnyHeader());    // Allows any header
             });
             //builder.Services.AddSingleton(builder.Configuration.GetConnectionString("DefaultConnection"));
-            builder.Services.AddSingleton<DBConnection>();
             // Add Swagger services
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
-            builder.Services.AddScoped<MenuRepository>();
-            builder.Services.AddScoped<ContentRepository>();
-            builder.Services.AddScoped<SocialIconRepository>();
-            builder.Services.AddScoped<StatisticsRepository>();
-            builder.Services.AddScoped<SubscriptionRepository>();
 
             var app = builder.Build();
 
