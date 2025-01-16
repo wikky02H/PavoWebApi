@@ -10,7 +10,6 @@
         public string? ContentFeedback { get; set; }
         public string? ContentFeedbackUserId { get; set; }
         public int? ContentOrderNo { get; set; }
-        //public string? ContentDetails { get; set; }
         public string? Feedback { get; set; }
         public int? OrderNo { get; set; }
         public int? UserId { get; set; }

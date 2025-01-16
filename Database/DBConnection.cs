@@ -11,7 +11,7 @@ namespace PavoWeb.Database
         public DBConnection(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection") ?? 
-                throw new ArgumentException("Connection string 'DefaultConnection' is missing or empty."); ;
+                throw new ArgumentException("Connection string 'DefaultConnection' is missing or empty.");
 
             if (string.IsNullOrEmpty(_connectionString))
             {
