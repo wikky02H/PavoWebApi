@@ -3,6 +3,7 @@ using PavoWeb.Handler;
 using PavoWeb.Repository;
 using Serilog;
 
+
 namespace PavoWeb
 {
     public class Program
@@ -14,6 +15,26 @@ namespace PavoWeb
                          .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)  
                          .CreateLogger();
             try
+            var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                    builder.AllowAnyOrigin()  // Allows any origin
+                        .AllowAnyMethod()      // Allows any HTTP method (GET, POST, PUT, DELETE)
+                        .AllowAnyHeader());    // Allows any header
+            });
+            //builder.Services.AddSingleton(builder.Configuration.GetConnectionString("DefaultConnection"));
+            // Add Swagger services
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+            builder.Services.AddControllers();
+            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+            builder.Services.AddOpenApi();
+
+            var app = builder.Build();
+
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
             {
                 var builder = WebApplication.CreateBuilder(args);
                 
